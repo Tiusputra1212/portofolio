@@ -242,3 +242,51 @@ h1 {
         gap: 20px;
     }
 }
+
+/* --- Styling untuk Data Diri (Informasi Pribadi) --- */
+.bio-data {
+    max-width: 600px;
+    margin: 30px auto 40px;
+    padding: 20px;
+    background-color: var(--color-dark); /* Latar belakang gelap */
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    text-align: left;
+}
+
+.bio-data h3 {
+    text-align: center;
+    color: var(--color-accent);
+    margin-bottom: 20px;
+}
+
+.bio-data table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.bio-data th, .bio-data td {
+    padding: 12px 15px;
+    font-size: 1rem;
+}
+
+.bio-data th {
+    /* Kolom kiri (judul) */
+    text-align: left;
+    color: var(--color-secondary);
+    width: 40%;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.bio-data td {
+    /* Kolom kanan (isi) */
+    text-align: right;
+    font-weight: bold;
+    color: var(--color-light);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Hilangkan border bawah pada baris terakhir */
+.bio-data tr:last-child th, .bio-data tr:last-child td {
+    border-bottom: none;
+}
