@@ -1,0 +1,245 @@
+/* Variabel Warna */
+:root {
+    --color-dark: #121212; /* Latar Belakang Utama */
+    --color-medium: #1f1f1f; /* Latar Belakang Kedua */
+    --color-light: #f5f5f5; /* Teks Utama */
+    --color-accent: #00bcd4; /* Warna Aksen (Biru Muda/Cyan) */
+    --color-secondary: #aaaaaa; /* Teks Sekunder */
+}
+
+/* Reset Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--color-light);
+    background-color: var(--color-dark);
+    scroll-behavior: smooth; /* Membuat scroll halus */
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem;
+}
+
+/* --- Section Styling --- */
+section {
+    padding: 60px 0;
+    min-height: 40vh; /* Agar ada ruang untuk scroll */
+}
+
+.dark-section {
+    background-color: var(--color-dark);
+    color: var(--color-light);
+}
+
+.light-section {
+    background-color: var(--color-medium);
+    color: var(--color-light);
+}
+
+h1, h2 {
+    color: var(--color-accent);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+p {
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto 1.5rem;
+    color: var(--color-secondary);
+}
+
+/* --- HERO Section --- */
+#hero {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background: url('background-gelap.jpg') no-repeat center center/cover; /* Ganti dengan gambar BG Anda */
+    background-attachment: fixed; /* Efek Parallax */
+    box-shadow: inset 0 0 0 1000px rgba(0, 0, 0, 0.7); /* Overlay gelap */
+}
+
+.profile-photo {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 20px;
+    border: 5px solid var(--color-accent);
+    box-shadow: 0 0 20px rgba(0, 188, 212, 0.5); /* Glowing effect */
+}
+
+h1 {
+    font-size: 3rem;
+    text-transform: uppercase;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--color-light);
+}
+
+.tagline {
+    font-style: italic;
+    color: var(--color-accent);
+}
+
+/* --- Grid Styling untuk Kegiatan (GANTI DENGAN KODE INI) --- */
+/* --- Grid Styling untuk Kegiatan (GANTI DENGAN KODE INI UNTUK EFEK PINTEREST) --- */
+.activity-grid {
+    /* Menggunakan CSS Columns untuk efek Masonry */
+    column-count: 4; /* Jumlah kolom default (layar desktop) */
+    column-gap: 15px; /* Jarak antar kolom dan gambar */
+    padding: 15px;
+    margin: 0 auto;
+    max-width: 1200px; /* Batasi lebar container */
+}
+
+.activity-grid img {
+    /* Penting: Ini memastikan gambar tetap utuh dan mengisi ruang kolom */
+    width: 100%;
+    height: auto; /* Mempertahankan rasio aspek asli (ukuran gambar real) */
+    display: block;
+    margin-bottom: 15px; /* Jarak antara gambar dalam kolom yang sama */
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Bayangan lembut */
+
+    /* Penting untuk mencegah gambar terpotong saat pindah kolom */
+    -webkit-column-break-inside: avoid;
+    page-break-inside: avoid;
+    break-inside: avoid;
+
+    /* Animasi Reveal on Scroll tetap berlaku */
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out, box-shadow 0.3s ease;
+}
+
+.activity-grid img:hover {
+    transform: scale(1.02);
+    box-shadow: 0 10px 30px rgba(0, 188, 212, 0.4);
+}
+
+/* --- Responsiveness (Agar tampilan tetap rapi di perangkat kecil) --- */
+@media (max-width: 1024px) {
+    .activity-grid {
+        column-count: 3; /* 3 kolom di tablet */
+    }
+}
+
+@media (max-width: 768px) {
+    .activity-grid {
+        column-count: 2; /* 2 kolom di ponsel landscape */
+    }
+}
+
+@media (max-width: 480px) {
+    .activity-grid {
+        column-count: 1; /* 1 kolom di ponsel portrait */
+    }
+}
+/* --- Footer & Media Sosial --- */
+#socials {
+    text-align: center;
+    padding: 40px 0;
+    background-color: var(--color-medium);
+}
+
+.social-links a {
+    color: var(--color-light);
+    font-size: 1.2rem;
+    margin: 0 15px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--color-accent);
+    transform: translateY(-5px);
+}
+
+.copyright {
+    margin-top: 20px;
+    font-size: 0.8rem;
+    color: var(--color-secondary);
+}
+
+/* ------------------------------------------- */
+/* --- ANIMATION (The "Reveal on Scroll") --- */
+/* ------------------------------------------- */
+
+/* Keadaan Awal (Tersembunyi) */
+.reveal {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    will-change: opacity, transform; /* Optimalisasi performa */
+}
+
+/* Keadaan Akhir (Muncul) */
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Tambahkan delay untuk item yang berurutan dalam grid */
+.activity-grid img.reveal { transition-delay: calc(var(--i) * 0.1s); }
+.social-links a.reveal { transition-delay: calc(var(--i) * 0.1s); }
+
+/* --- Posisi Sertifikat (Sangat Direkomendasikan) --- */
+
+.certificate-list {
+    display: grid;
+    /* Atur 3 kolom sama rata pada desktop */
+    grid-template-columns: repeat(3, 1fr); 
+    gap: 30px; /* Jarak antar sertifikat */
+    padding: 20px 0;
+    max-width: 1000px; /* Batas lebar agar tidak terlalu melebar */
+    margin: 0 auto; /* Tengah-kan daftar sertifikat */
+}
+
+.certificate-list img {
+    width: 100%;
+    /* Pertahankan rasio aspek asli (tidak terpotong) */
+    height: auto; 
+    display: block;
+    border-radius: 6px;
+    /* Bayangan untuk efek kedalaman */
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5); 
+    
+    /* Efek halus saat di-hover */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+}
+
+.certificate-list img:hover {
+    transform: translateY(-5px); /* Sedikit naik saat di-hover */
+    box-shadow: 0 10px 20px rgba(0, 188, 212, 0.6); /* Glowing accent */
+}
+
+/* --- Responsiveness (Agar tetap rapi di perangkat kecil) --- */
+
+@media (max-width: 768px) {
+    .certificate-list {
+        /* Ubah menjadi 2 kolom di tablet */
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .certificate-list {
+        /* Ubah menjadi 1 kolom di ponsel */
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+}
